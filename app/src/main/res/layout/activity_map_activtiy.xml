@@ -18,13 +18,13 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="347dp"
-        android:layout_above="@+id/button"
+        android:layout_above="@+id/show"
         android:layout_below="@+id/idPieChart"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/show"
         android:layout_width="match_parent"
         android:layout_height="66dp"
         android:layout_alignParentBottom="true"

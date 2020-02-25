@@ -1,16 +1,23 @@
 package com.example.willproject;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
@@ -36,21 +43,67 @@ import java.util.ArrayList;
 
 public class MapActivtiy extends FragmentActivity implements OnMapReadyCallback {
 
-
+    Button button;
     Location currentLocation;
     FusedLocationProviderClient fusedLocationProviderClient;
     public static final int REQUEST_CODE = 101;
 
+    NearByConsultants nearByConsultants;
+
+    double letValueMain;
+    double longValueMain;
+
+
     private static String TAG = "MainActivity";
-//
+    //
     private float[] yData = {25.3f, 10.6f, 66.76f, 44.32f, 46.01f, 16.89f, 23.9f};
-    private String[] xData = {"Mitch", "Jessica" , "Mohammad" , "Kelsey", "Sam", "Robert", "Ashley"};
+    private String[] xData = {"Mitch", "Jessica", "Mohammad", "Kelsey", "Sam", "Robert", "Ashley"};
     PieChart pieChart;
+
     //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_activtiy);
+        button = findViewById(R.id.show);
+        button.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View v) {
+
+                fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(MapActivtiy.this);
+                LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    Activity#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for Activity#requestPermissions for more details.
+                    return;
+                }
+                Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                longValueMain = location.getLongitude();
+                Log.d("tag", "ontry:" +longValueMain);
+                letValueMain = location.getLatitude();
+                Log.d("tag", "ontry:" +letValueMain);
+
+
+                Intent intent = new Intent(MapActivtiy.this,NearByConsultants.class);
+                intent.putExtra("latitude", letValueMain);
+                intent.putExtra("longitude", longValueMain);
+                startActivity(intent);
+
+
+
+
+
+
+
+
+            }
+        });
 
         //----------------------------------------
         Log.d(TAG, "onCreate: starting to create chart");

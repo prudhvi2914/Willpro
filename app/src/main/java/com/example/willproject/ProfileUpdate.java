@@ -75,7 +75,7 @@ updatebtn.setOnClickListener(new View.OnClickListener() {
             upname.setText(cursor.getString(cursor.getColumnIndex("Name")));
             upemail.setText(cursor.getString(cursor.getColumnIndex("Phone")));
             upphone.setText(cursor.getString(cursor.getColumnIndex("Gmail")));
-            uppassword.setText(cursor.getColumnIndex(""));
+            uppassword.setText(cursor.getColumnIndex("Ph"));
 
           //  txtDOB.setText(cursor.getString(cursor.getColumnIndex("dob")));
             break;
