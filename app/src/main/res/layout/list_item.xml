@@ -21,23 +21,28 @@ android:layout_width="match_parent" android:layout_height="wrap_content">
             android:id="@+id/list_img"
             android:layout_width="111dp"
             android:layout_height="84dp"
-            />
+            tools:srcCompat="@drawable/img" />
+
         <TextView
             android:id="@+id/textviewHead"
             android:layout_width="164dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="140dp"
+            android:layout_marginTop="-70dp"
             android:text="Heading"
-            android:layout_marginTop="-70dp"/>
-
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
 
         <TextView
             android:id="@+id/textViewDes"
-            android:layout_width="164dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="140dp"
-            android:text="Description" />
+            android:text="Description"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
 
         <Button
             android:id="@+id/reviewbutton"
@@ -45,8 +50,9 @@ android:layout_width="match_parent" android:layout_height="wrap_content">
             android:layout_height="wrap_content"
             android:layout_marginLeft="150dp"
             android:layout_marginTop="10dp"
-            android:textSize="18sp"
-            tools:text="Review" />
+            android:text="Reviews"
+            android:textColor="#03A9F4"
+            android:textSize="24sp" />
 
         <!--            <TextView-->
         <!--                android:id="@+id/moredata"-->

@@ -34,6 +34,7 @@ public class BreakDown extends AppCompatActivity {
                 int amount = Integer.parseInt(entertext.getText().toString());
                 //rent
                 double rent = 0.3 * amount;
+
                 renttext.setText(String.valueOf(rent));
                 //food
                 double foods = 0.2 * amount;

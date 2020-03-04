@@ -57,7 +57,7 @@ public class MapActivtiy extends FragmentActivity implements OnMapReadyCallback 
     private static String TAG = "MainActivity";
     //
     private float[] yData = {25.3f, 10.6f, 66.76f, 44.32f, 46.01f, 16.89f, 23.9f};
-    private String[] xData = {"Mitch", "Jessica", "Mohammad", "Kelsey", "Sam", "Robert", "Ashley"};
+    private String[] xData = {"Rent", "Jessica", "Mohammad", "Kelsey", "Sam", "Robert", "Ashley"};
     PieChart pieChart;
 
     //

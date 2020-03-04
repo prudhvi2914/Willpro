@@ -16,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.location.FusedLocationProviderClient;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,6 +32,8 @@ public class NearByConsultants extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<Listitem> listitems;
+    private  static final int REQUEST_CODE = 101;
+    FusedLocationProviderClient fusedLocationProviderClient;
 
 
     @Override
@@ -47,13 +50,11 @@ public class NearByConsultants extends AppCompatActivity {
 
 
         final double letValue = getIntent().getDoubleExtra("latitude", 12.12);
-        final double longValue = getIntent().getDoubleExtra("longitude", 12.13);
+        final double longValue = getIntent().getDoubleExtra("longitude", 14.13);
 
 
-        final String URL_DATA = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + letValue + "," + longValue + "&radius=1500&type=financial%20consultants&keyword=financial%20consultants&key=AIzaSyBmEX_q5Lq1h7oE4hA6FYcHJqhdFOxQSeg";
+        final String URL_DATA = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + letValue + "," + longValue + "&radius=4500&type=financial%20consultants&keyword=financial%20consultants&key=AIzaSyBmEX_q5Lq1h7oE4hA6FYcHJqhdFOxQSeg";
 
-
-//    private void loadRecyclerviewData(){
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("LoadingData.....");
         progressDialog.show();
@@ -62,12 +63,14 @@ public class NearByConsultants extends AppCompatActivity {
             public void onResponse(String s) {
                 progressDialog.dismiss();
                 try {
+                    Toast.makeText(getApplicationContext(),longValue+"  "+letValue,Toast.LENGTH_SHORT).show();
                     JSONObject jsonObject = new JSONObject(s);
                     JSONArray array = jsonObject.getJSONArray("results");
+
                     for (int i = 0; i < array.length(); i++) {
 
                         JSONObject o = array.getJSONObject(i);
-                        Listitem item = new Listitem(o.getString("name"), o.getString("rating"), o.getString("scope"));
+                        Listitem item = new Listitem(o.getString("name"), o.getString("rating"), o.getString("icon"));
                         Log.d("tag", String.valueOf(item));
                         listitems.add(item);
                     }
@@ -83,7 +86,7 @@ public class NearByConsultants extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Toast.makeText(getApplicationContext(), volleyError.getMessage(), Toast.LENGTH_LONG).show();
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
 
             }
         });
@@ -91,6 +94,5 @@ public class NearByConsultants extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
 
-//    }
     }
 }
