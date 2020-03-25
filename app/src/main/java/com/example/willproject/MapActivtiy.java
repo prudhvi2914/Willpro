@@ -96,12 +96,6 @@ public class MapActivtiy extends FragmentActivity implements OnMapReadyCallback 
                 startActivity(intent);
 
 
-
-
-
-
-
-
             }
         });
 
