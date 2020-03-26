@@ -15,6 +15,7 @@
             android:id="@+id/collapsingtoolbar_id"
             app:layout_scrollFlags="exitUntilCollapsed|scroll"
             app:title="Consultant Name"
+
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp"
@@ -33,7 +34,7 @@
                 >
 
 
-            <ImageView
+                <ImageView
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/loading_shape"
@@ -62,8 +63,7 @@
                     android:drawableLeft="@drawable/icon_star"
                     android:paddingRight="5dp"
                     android:text="0.0"
-                    android:textColor="#fff"
-                    android:textSize="20sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_marginTop="5dp"
@@ -73,23 +73,137 @@
                     android:id="@+id/aa_categorie"/>
 
             </LinearLayout>
+
             </LinearLayout>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <androidx.core.widget.NestedScrollView
+        <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:padding="16dp">
+        android:padding="16dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-        <TextView
-            android:text="Anime Description"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/aa_description"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:text="Book Appointment"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:textStyle="bold">
 
-    </androidx.core.widget.NestedScrollView>
+    </TextView>
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:text="Pick Date,Time:"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:textStyle="bold">
+
+    </TextView>
+
+
+    <Button
+        android:id="@+id/datebtn"
+        android:layout_width="56dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_date_range_black_24dp">
+
+    </Button>
+
+    <TextView
+        android:id="@+id/datetxt"
+        android:layout_width="174dp"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:textStyle="bold">
+    </TextView>
+
+</LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+       <RadioGroup
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:id="@+id/radio">
+    <RadioButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="10:00AM"
+    android:checked="false"
+    android:id="@+id/one">
+     </RadioButton>
+           <RadioButton
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="11:00AM"
+               android:checked="false"
+               android:id="@+id/two">
+           </RadioButton>
+           <RadioButton
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="02:00PM"
+               android:checked="false"
+               android:id="@+id/three">
+           </RadioButton>
+           <RadioButton
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="04:00PM"
+               android:checked="false"
+               android:id="@+id/four">
+           </RadioButton>
+           <RadioButton
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="05:00PM"
+               android:checked="false"
+               android:id="@+id/five">
+           </RadioButton>
+
+       </RadioGroup>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/schedule"
+            android:layout_width="404dp"
+            android:layout_height="wrap_content"
+            android:text="Schedule Appointment"></Button>
+    </LinearLayout>
+
+
+
+</LinearLayout>
+
+
+
+
+        </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
