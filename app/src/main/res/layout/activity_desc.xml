@@ -198,6 +198,11 @@
             android:text="Schedule Appointment"></Button>
     </LinearLayout>
 
+    <Button
+        android:id="@+id/display"
+        android:layout_width="404dp"
+        android:layout_height="wrap_content"
+        android:text="Show Bookings"></Button>
 
 
 </LinearLayout>

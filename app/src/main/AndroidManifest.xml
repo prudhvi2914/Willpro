@@ -13,29 +13,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DescActivity">
-
-        </activity>
+        <activity android:name=".ShowAppointments"></activity>
+        <activity android:name=".DescActivity"></activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity">
-
-        </activity>
-        <activity android:name=".MapActivtiy">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MapActivtiy">
+
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key" />
 
-        <activity android:name=".ProfileUpdate"></activity>
+        <activity android:name=".ProfileUpdate" />
         <activity android:name=".BreakDown" />
         <activity android:name=".NearByConsultants" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity" >
+
+        </activity>
+
     </application>
 
 </manifest>

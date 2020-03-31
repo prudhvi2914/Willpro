@@ -3,6 +3,10 @@ package com.example.willproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,18 +27,31 @@ public class DescActivity extends AppCompatActivity implements DatePickerDialog.
 
 
     private TextView datetxt;
-    private Button datebtn;
+    private Button datebtn,display;
     Button schedulebtn;
     RadioGroup rg;
     RadioButton r1,r2,r3,r4,r5;
+    private SQLiteOpenHelper openHelper;
+    private SQLiteDatabase db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desc);
+        openHelper = new DataBaseHelper(this);
 
         datebtn = findViewById(R.id.datebtn);
         datetxt = findViewById(R.id.datetxt);
+        display = findViewById(R.id.display);
+        display.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DescActivity.this,ShowAppointments.class);
+                startActivity(intent);
+
+            }
+        });
         r1 = findViewById(R.id.one);
         r2 = findViewById(R.id.two);
         r3 = findViewById(R.id.three);
@@ -55,22 +72,29 @@ public class DescActivity extends AppCompatActivity implements DatePickerDialog.
                     }
                 });
 
-//                int i = rg.getCheckedRadioButtonId();
-//                RadioButton rb = (RadioButton) rg.findViewById(i);
-//                Toast.makeText(getApplicationContext(),"you " + rb.getText().toString(),Toast.LENGTH_LONG).show();
-                if(r1.isChecked()){
-                 // textview.settext("fdvf");
-                    
-                }
+                int i = rg.getCheckedRadioButtonId();
+                RadioButton rb = (RadioButton) rg.findViewById(i);
+               // Toast.makeText(getApplicationContext(),"you " + rb.getText().toString(),Toast.LENGTH_LONG).show();
 
+                //writable
+                db = openHelper.getWritableDatabase();
+                try {
+                String date = datetxt.getText().toString();
+                String radio1 = rb.getText().toString().trim();
+
+                    if (date.isEmpty() && radio1.isEmpty()) {
+                        Toast.makeText(DescActivity.this, "Please select all the details", Toast.LENGTH_LONG).show();
+                    } else {
+                        insertDateTime(date, radio1);
+                        Toast.makeText(DescActivity.this, "Appointment Scheduled", Toast.LENGTH_LONG).show();
+                    }
+            }catch (Exception e){
+
+                Toast.makeText(DescActivity.this, "Please select all the details", Toast.LENGTH_LONG).show();
+            }
 
             }
         });
-
-
-
-
-
 
 
         // Recieve data
@@ -119,5 +143,12 @@ public class DescActivity extends AppCompatActivity implements DatePickerDialog.
         String date = ""+ month +"/"+dayOfMonth + "/"+year;
         datetxt.setText(date);
 
+    }
+    public void insertDateTime(String date ,String radio1){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DataBaseHelper.COL_7,date);
+        contentValues.put(DataBaseHelper.COL_8,radio1);
+
+        long id = db.insert(DataBaseHelper.TABLE_NAME,null,contentValues);
     }
 }

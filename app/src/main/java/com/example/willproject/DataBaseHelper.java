@@ -1,6 +1,7 @@
 package com.example.willproject;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -15,6 +16,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COL_4="Gmail";
     public static final String COL_5="Password";
     public static final String COL_6="Picture";
+    public static final String COL_7="date";
+    public static final String COL_8="radio";
+    //------------------------------------------
+    public static final String COL_9="rent";
+    public static final String COL_10="food";
+    public static final String COL_11="utility";
+    public static final String COL_12="savings";
+    public static final String COL_13="taxes";
+    public static final String COL_14="retirement";
+    public static final String COL_15="insurance";
+
+    public static final String TBName_Book = "Book";
+
 
 
     public DataBaseHelper(Context context) {
@@ -27,12 +41,29 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,Name TEXT,Phone TEXT,Gmail TEXT,Password TEXT)");
+        db.execSQL("CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,Name TEXT,Phone TEXT,Gmail TEXT,Password TEXT,date TEXT, radio TEXT,Last Text)");
+      //  db.execSQL("CREATE TABLE " + TBName_Book + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,Date TEXT,Radio TEXT)");
+
     }
+
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " +TABLE_NAME);
         onCreate(db);
+//        db.execSQL("DROP TABLE IF EXISTS " +TBName_Book);
+//        onCreate(db);
+    }
+
+    public Cursor getlistofbookings(SQLiteDatabase db){
+
+
+        String[] proj = {DataBaseHelper.COL_2,DataBaseHelper.COL_7,DataBaseHelper.COL_8};
+        Cursor cursor = db.query(DataBaseHelper.TABLE_NAME,proj,null,null,null,null,null);
+
+        return cursor;
+
+
     }
 
 }

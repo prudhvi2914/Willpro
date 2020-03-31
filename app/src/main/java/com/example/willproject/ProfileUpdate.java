@@ -22,8 +22,8 @@ public class ProfileUpdate extends AppCompatActivity {
 
     EditText upname,upemail,upphone,uppassword;
     Button updatebtn;
-    private SQLiteOpenHelper openHelper;
-    private SQLiteDatabase db;
+    DataBaseHelper dataBaseHelper;
+    SQLiteDatabase db;
     private static String userEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class ProfileUpdate extends AppCompatActivity {
         uppassword = findViewById(R.id.uppassword);
         updatebtn = findViewById(R.id.update);
 
-        openHelper = new DataBaseHelper(this);
+        dataBaseHelper = new DataBaseHelper(this);
 
 updatebtn.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -46,7 +46,7 @@ updatebtn.setOnClickListener(new View.OnClickListener() {
         String email = upemail.getText().toString();
         String phone = upphone.getText().toString();
         String password = uppassword.getText().toString();
-        db = openHelper.getWritableDatabase();
+        db = dataBaseHelper.getWritableDatabase();
         readFromDataBase();
         updateData(name,email,phone,password);
         Toast.makeText(ProfileUpdate.this,"ProfileUpadted",Toast.LENGTH_LONG).show();
@@ -69,20 +69,52 @@ updatebtn.setOnClickListener(new View.OnClickListener() {
     public void readFromDataBase(){
 
 
-        db = openHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM registration",null);
-        while (cursor.moveToNext()){
-            upname.setText(cursor.getString(cursor.getColumnIndex("Name")));
-            upemail.setText(cursor.getString(cursor.getColumnIndex("Phone")));
-            upphone.setText(cursor.getString(cursor.getColumnIndex("Gmail")));
-            uppassword.setText(cursor.getString(cursor.getColumnIndex("Password")));
+        db = dataBaseHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(("SELECT * FROM TABLE_NAME"), null);
+try {
 
 
-            //  txtDOB.setText(cursor.getString(cursor.getColumnIndex("dob")));
-            break;
+    while (cursor.moveToNext()) {
+        upname.setText(cursor.getString(cursor.getColumnIndex(DataBaseHelper.COL_2)));
 
-        }
+        upemail.setText(cursor.getString(cursor.getColumnIndex(DataBaseHelper.COL_4)));
+        upphone.setText(cursor.getString(cursor.getColumnIndex(DataBaseHelper.COL_3)));
+        uppassword.setText(cursor.getString(cursor.getColumnIndex(DataBaseHelper.COL_5)));
+
+
+        //  txtDOB.setText(cursor.getString(cursor.getColumnIndex("dob")));
+        break;
+
+    }
+}catch (Exception e){}
 
     }
 
+
+
 }
+
+//
+//    private void fillProfileFromDatabase() {
+//        try {
+//
+//            TourBuddyDB = dbHelper.getReadableDatabase();
+//            Cursor cursor = TourBuddyDB.rawQuery(("SELECT email, phone, password, name, dob " +
+//                    "FROM "+ TBName_User +" WHERE email LIKE '"+ userEmail +"'"), null);
+//            while (cursor.moveToNext()){
+//                edtName.setText(cursor.getString(cursor.getColumnIndex("name")));
+//                edtPhone.setText(cursor.getString(cursor.getColumnIndex("phone")));
+//                edtEmail.setText(cursor.getString(cursor.getColumnIndex("email")));
+//                edtPassword.setText(cursor.getString(cursor.getColumnIndex("password")));
+//
+//                txtDOB.setText(cursor.getString(cursor.getColumnIndex("dob")));
+//                break;
+//
+//            }
+//
+//        }catch (Exception e){
+//            Log.e("ProfileActivity", e.getMessage());
+//        }finally{
+//            TourBuddyDB.close();
+//        }
+//    }
