@@ -26,6 +26,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COL_13="taxes";
     public static final String COL_14="retirement";
     public static final String COL_15="insurance";
+    //-------------------------------------------
+    public static final String COL_16="cardname";
+    public static final String COL_17="cardnumber";
+    public static final String COL_18="cardcvv";
+    public static final String COL_19="cardexpiry";
 
     public static final String TBName_Book = "Book";
 
@@ -41,7 +46,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,Name TEXT,Phone TEXT,Gmail TEXT,Password TEXT,date TEXT, radio TEXT,Last Text)");
+        db.execSQL("CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,Name TEXT,Phone TEXT,Gmail TEXT,Password TEXT,date TEXT, radio TEXT,Last Text, rent Text,food Text,utility Text,savings Text,taxes Text,retirement Text,insurance Text, cardname Text,cardnumber Text,cardcvv Text,cardexpiry Text)");
       //  db.execSQL("CREATE TABLE " + TBName_Book + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,Date TEXT,Radio TEXT)");
 
     }

@@ -315,7 +315,7 @@
 
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/showbrkdwn"
                 android:layout_width="193dp"
                 android:layout_height="39dp"
                 android:text="ShowBreakDown"

@@ -13,8 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShowAppointments"></activity>
-        <activity android:name=".DescActivity"></activity>
+        <activity android:name=".Payment"></activity>
+        <activity android:name=".SupportActivity" />
+        <activity android:name=".ShowAppointments" />
+        <activity android:name=".DescActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
@@ -23,9 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MapActivtiy">
-
-        </activity>
+        <activity android:name=".MapActivtiy" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -34,10 +34,7 @@
         <activity android:name=".ProfileUpdate" />
         <activity android:name=".BreakDown" />
         <activity android:name=".NearByConsultants" />
-        <activity android:name=".MainActivity" >
-
-        </activity>
-
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

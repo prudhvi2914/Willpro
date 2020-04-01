@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(profile);
                         return true;
                     case R.id.con:
-                        Toast.makeText(MainActivity.this,"you tapped on consultants",Toast.LENGTH_LONG).show();
-                        Intent consultants = new Intent(MainActivity.this, NearByConsultants.class);
+                        Toast.makeText(MainActivity.this,"you tapped on Support",Toast.LENGTH_LONG).show();
+                        Intent consultants = new Intent(MainActivity.this, SupportActivity.class);
                         startActivity(consultants);
                         return true;
                     case R.id.nav_break:
@@ -63,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this,"you tapped on UserLocationPage",Toast.LENGTH_LONG).show();
                         Intent loc = new Intent(MainActivity.this, MapActivtiy.class);
                         startActivity(loc);
+                        return true;
+
+                    case R.id.nav_payment:
+                        Toast.makeText(MainActivity.this,"you tapped on PaymentInformation page",Toast.LENGTH_LONG).show();
+                        Intent pay = new Intent(MainActivity.this, Payment.class);
+                        startActivity(pay);
                         return true;
 
                 }

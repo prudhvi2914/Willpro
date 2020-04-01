@@ -3,6 +3,7 @@ package com.example.willproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
@@ -34,6 +35,15 @@ public class BreakDown extends AppCompatActivity {
         retire = findViewById(R.id.retire);
         insurance = findViewById(R.id.insurance);
         btn = findViewById(R.id.cal);
+        breakdown = findViewById(R.id.showbrkdwn);
+        breakdown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(BreakDown.this,MapActivtiy.class);
+                startActivity(i);
+            }
+        });
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +73,7 @@ public class BreakDown extends AppCompatActivity {
                 double insurances = 0.3 * amount;
                 insurance.setText(String.valueOf(insurances));
 
-try {
+                try {
                 //writable
                 db = openHelper.getWritableDatabase();
                     String rent1 = renttext.getText().toString();

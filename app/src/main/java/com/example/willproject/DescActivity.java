@@ -60,17 +60,18 @@ public class DescActivity extends AppCompatActivity implements DatePickerDialog.
         rg = findViewById(R.id.radio);
 
         schedulebtn  = findViewById(R.id.schedule);
+        datebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
+
         schedulebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-                datebtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        showDatePickerDialog();
-                    }
-                });
 
                 int i = rg.getCheckedRadioButtonId();
                 RadioButton rb = (RadioButton) rg.findViewById(i);
