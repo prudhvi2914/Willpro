@@ -15,7 +15,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COL_3="Phone";
     public static final String COL_4="Gmail";
     public static final String COL_5="Password";
-    public static final String COL_6="Picture";
+    public static final String C_IMAGE = "IMAGE";
+    public static final String C_ADDED_TIMESTAMP = "ADDED_TIME_STAMP";
+    public static final String C_UPDATED_TIMESTAMP = "UPDATED_TIME_STAMP";
     public static final String COL_7="date";
     public static final String COL_8="radio";
     //------------------------------------------
@@ -46,7 +48,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,Name TEXT,Phone TEXT,Gmail TEXT,Password TEXT,date TEXT, radio TEXT,Last Text, rent Text,food Text,utility Text,savings Text,taxes Text,retirement Text,insurance Text, cardname Text,cardnumber Text,cardcvv Text,cardexpiry Text)");
+        db.execSQL("CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,Name TEXT,Phone TEXT,Gmail TEXT UNIQUE,Password TEXT,date TEXT, radio TEXT,Last Text, rent Text,food Text,utility Text,savings Text,taxes Text,retirement Text,insurance Text, cardname Text,cardnumber Text,cardcvv Text,cardexpiry Text,ADDED_TIME_STAMP Text,UPDATED_TIME_STAMP Text,IMAGE TEXT)");
       //  db.execSQL("CREATE TABLE " + TBName_Book + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,Date TEXT,Radio TEXT)");
 
     }
